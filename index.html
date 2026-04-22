@@ -71,10 +71,7 @@
     text-transform: uppercase;
     text-decoration: none;
   }
-  .logo strong {
-    font-weight: 600;
-    letter-spacing: 0.28em;
-  }
+  .logo strong { font-weight: 600; letter-spacing: 0.28em; }
 
   .nav-right { display: flex; align-items: center; gap: 2rem; }
 
@@ -87,6 +84,34 @@
     transition: color 0.2s;
   }
   nav .nav-link:hover { color: var(--text); }
+
+  /* ── LANGUAGE TOGGLE ──────────────────────────────── */
+  .lang-toggle {
+    display: flex; align-items: center; gap: 0.35rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.3rem 0;
+    font-family: 'Inter', sans-serif;
+  }
+  .lang-opt {
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    color: var(--text-muted);
+    transition: color 0.2s;
+    line-height: 1;
+  }
+  .lang-opt.active {
+    font-weight: 600;
+    color: var(--text);
+  }
+  .lang-sep {
+    font-size: 0.65rem;
+    color: var(--silver-light);
+    line-height: 1;
+    user-select: none;
+  }
 
   nav a.contact-btn {
     font-size: 0.78rem;
@@ -101,7 +126,6 @@
     transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
   }
   nav a.contact-btn:hover {
-    background: var(--white);
     border-color: var(--silver);
     box-shadow: 0 2px 12px rgba(157, 164, 188, 0.2);
   }
@@ -116,18 +140,12 @@
     position: relative;
     overflow: hidden;
     background: linear-gradient(-45deg,
-      var(--pearl-a),
-      var(--pearl-b),
-      var(--pearl-c),
-      var(--pearl-d),
-      var(--pearl-e),
-      var(--pearl-a)
+      var(--pearl-a), var(--pearl-b), var(--pearl-c),
+      var(--pearl-d), var(--pearl-e), var(--pearl-a)
     );
     background-size: 400% 400%;
     animation: pearl-shift 16s ease infinite;
   }
-
-  /* Fine grain texture overlay */
   #hero::before {
     content: '';
     position: absolute; inset: 0;
@@ -136,8 +154,6 @@
       radial-gradient(circle at 70% 80%, rgba(218, 208, 240, 0.14) 0%, transparent 50%);
     pointer-events: none;
   }
-
-  /* Subtle arc decoration */
   #hero::after {
     content: '';
     position: absolute;
@@ -160,8 +176,7 @@
     color: var(--silver-dark);
     margin-bottom: 2rem;
   }
-  .eyebrow::before,
-  .eyebrow::after {
+  .eyebrow::before, .eyebrow::after {
     content: '';
     display: block;
     width: 24px; height: 1px;
@@ -178,11 +193,7 @@
     margin: 0 auto 1.8rem;
     letter-spacing: -0.01em;
   }
-  h1 em {
-    font-style: italic;
-    font-weight: 300;
-    color: var(--silver-dark);
-  }
+  h1 em { font-style: italic; font-weight: 300; color: var(--silver-dark); }
 
   .hero-sub {
     font-size: 1.05rem;
@@ -291,7 +302,6 @@
     background: var(--white);
     padding: 2.2rem 2rem;
     transition: background 0.25s;
-    position: relative;
   }
   .pillar:hover { background: var(--bg); }
 
@@ -303,55 +313,30 @@
   }
   .pillar-icon svg {
     width: 22px; height: 22px;
-    stroke: var(--text);
-    fill: none;
-    stroke-width: 1.5;
-    stroke-linecap: round;
-    stroke-linejoin: round;
+    stroke: var(--text); fill: none;
+    stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round;
   }
 
   .pillar h3 {
     font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 0.55rem;
-    letter-spacing: 0.01em;
+    font-size: 1.2rem; font-weight: 600;
+    color: var(--text); margin-bottom: 0.55rem; letter-spacing: 0.01em;
   }
-  .pillar p {
-    font-size: 0.875rem;
-    font-weight: 300;
-    color: var(--text-muted);
-    line-height: 1.7;
-  }
+  .pillar p { font-size: 0.875rem; font-weight: 300; color: var(--text-muted); line-height: 1.7; }
 
   /* ── APPROACH ─────────────────────────────────────── */
-  #approach {
-    background: var(--bg);
-    border-top: 1px solid var(--border);
-  }
+  #approach { background: var(--bg); border-top: 1px solid var(--border); }
 
   .approach-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: center;
-    margin-top: 3.5rem;
-  }
-  @media (max-width: 720px) {
-    .approach-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-    nav { padding: 1rem 1.5rem; }
-    nav .nav-link { display: none; }
-    section { padding: 5rem 1.5rem; }
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center; margin-top: 3.5rem;
   }
 
   .steps { list-style: none; display: flex; flex-direction: column; gap: 0; }
 
   .step {
-    display: flex; gap: 1.5rem;
-    align-items: flex-start;
-    padding: 1.8rem 0;
-    border-bottom: 1px solid var(--border);
+    display: flex; gap: 1.5rem; align-items: flex-start;
+    padding: 1.8rem 0; border-bottom: 1px solid var(--border);
   }
   .step:first-child { padding-top: 0; }
   .step:last-child  { border-bottom: none; padding-bottom: 0; }
@@ -359,216 +344,125 @@
   .step-num {
     flex-shrink: 0;
     font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 0.95rem;
-    font-weight: 300;
-    color: var(--silver);
-    letter-spacing: 0.08em;
-    padding-top: 0.1rem;
-    width: 28px;
+    font-size: 0.95rem; font-weight: 300;
+    color: var(--silver); letter-spacing: 0.08em;
+    padding-top: 0.1rem; width: 28px;
   }
   .step-text h4 {
-    font-size: 0.92rem;
-    font-weight: 500;
-    color: var(--text);
-    margin-bottom: 0.3rem;
-    letter-spacing: 0.02em;
+    font-size: 0.92rem; font-weight: 500;
+    color: var(--text); margin-bottom: 0.3rem; letter-spacing: 0.02em;
   }
-  .step-text p {
-    font-size: 0.86rem;
-    font-weight: 300;
-    color: var(--text-muted);
-    line-height: 1.65;
-  }
+  .step-text p { font-size: 0.86rem; font-weight: 300; color: var(--text-muted); line-height: 1.65; }
 
-  /* Pearl chart visual */
   .approach-visual {
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 2.5rem 2rem;
-    position: relative;
-    overflow: hidden;
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 8px; padding: 2.5rem 2rem;
+    position: relative; overflow: hidden;
   }
   .approach-visual::before {
     content: '';
     position: absolute; inset: 0;
     background: linear-gradient(135deg,
-      rgba(242,243,251,0.6) 0%,
-      rgba(248,243,255,0.4) 50%,
-      rgba(242,248,255,0.6) 100%
+      rgba(242,243,251,0.6) 0%, rgba(248,243,255,0.4) 50%, rgba(242,248,255,0.6) 100%
     );
     pointer-events: none;
   }
   .approach-visual svg { width: 100%; position: relative; }
 
   /* ── CONFIDENTIALITY ──────────────────────────────── */
-  #confidentiality {
-    background: var(--white);
-    border-top: 1px solid var(--border);
-  }
+  #confidentiality { background: var(--white); border-top: 1px solid var(--border); }
 
   .conf-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    align-items: start;
-    margin-top: 3.5rem;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: start; margin-top: 3.5rem;
   }
-  @media (max-width: 720px) { .conf-layout { grid-template-columns: 1fr; gap: 2.5rem; } }
 
-  .conf-bullets {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
+  .conf-bullets { list-style: none; display: flex; flex-direction: column; gap: 0; }
   .conf-bullets li {
     display: flex; align-items: center; gap: 1rem;
-    font-size: 0.875rem;
-    font-weight: 300;
-    color: var(--text-mid);
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--border);
-    letter-spacing: 0.01em;
+    font-size: 0.875rem; font-weight: 300;
+    color: var(--text-mid); padding: 1rem 0;
+    border-bottom: 1px solid var(--border); letter-spacing: 0.01em;
   }
   .conf-bullets li:last-child { border-bottom: none; }
   .conf-bullets li::before {
     content: '';
-    flex-shrink: 0;
-    width: 5px; height: 5px;
+    flex-shrink: 0; width: 5px; height: 5px;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--silver-light), var(--silver));
   }
 
   .conf-statement {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 2.2rem;
-    margin-top: 2rem;
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 6px; padding: 2.2rem; margin-top: 2rem;
   }
   .conf-statement p {
     font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 1.25rem;
-    font-weight: 300;
-    font-style: italic;
-    color: var(--text-mid);
-    line-height: 1.6;
+    font-size: 1.25rem; font-weight: 300; font-style: italic;
+    color: var(--text-mid); line-height: 1.6;
   }
 
   /* ── CONTACT ──────────────────────────────────────── */
-  #contact {
-    background: var(--bg);
-    border-top: 1px solid var(--border);
-  }
+  #contact { background: var(--bg); border-top: 1px solid var(--border); }
 
   .contact-cols {
-    display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 6rem;
-    align-items: start;
-    margin-top: 3.5rem;
+    display: grid; grid-template-columns: 1fr 1.2fr;
+    gap: 6rem; align-items: start; margin-top: 3.5rem;
   }
-  @media (max-width: 720px) { .contact-cols { grid-template-columns: 1fr; gap: 3rem; } }
 
   .contact-aside p {
-    font-size: 0.9rem;
-    font-weight: 300;
-    color: var(--text-muted);
-    line-height: 1.8;
-    margin-bottom: 2rem;
+    font-size: 0.9rem; font-weight: 300;
+    color: var(--text-muted); line-height: 1.8; margin-bottom: 2rem;
   }
 
-  .contact-detail {
-    display: flex; flex-direction: column; gap: 0.8rem;
-    margin-top: 1.5rem;
-  }
+  .contact-detail { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 1.5rem; }
   .contact-detail a {
-    font-size: 0.82rem;
-    font-weight: 400;
-    color: var(--text-mid);
-    text-decoration: none;
-    letter-spacing: 0.04em;
-    transition: color 0.2s;
+    font-size: 0.82rem; font-weight: 400;
+    color: var(--text-mid); text-decoration: none;
+    letter-spacing: 0.04em; transition: color 0.2s;
   }
   .contact-detail a:hover { color: var(--text); }
 
   form { display: flex; flex-direction: column; gap: 1.1rem; }
-
   .field { display: flex; flex-direction: column; gap: 0.4rem; }
 
   label {
-    font-size: 0.72rem;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-muted);
+    font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted);
   }
 
   input, textarea {
-    width: 100%;
-    background: var(--white);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    color: var(--text);
-    font-family: 'Inter', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 300;
-    padding: 0.75rem 1rem;
-    outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    width: 100%; background: var(--white);
+    border: 1px solid var(--border); border-radius: 4px;
+    color: var(--text); font-family: 'Inter', sans-serif;
+    font-size: 0.9rem; font-weight: 300; padding: 0.75rem 1rem;
+    outline: none; transition: border-color 0.2s, box-shadow 0.2s;
   }
-  input::placeholder, textarea::placeholder {
-    color: var(--text-muted);
-    font-weight: 300;
-  }
+  input::placeholder, textarea::placeholder { color: var(--text-muted); font-weight: 300; }
   input:focus, textarea:focus {
     border-color: var(--silver);
     box-shadow: 0 0 0 3px rgba(157, 164, 188, 0.1);
   }
   textarea { resize: vertical; min-height: 110px; }
 
-  .form-note {
-    font-size: 0.75rem;
-    font-weight: 300;
-    color: var(--text-muted);
-    margin-top: 0.4rem;
-  }
+  .form-note { font-size: 0.75rem; font-weight: 300; color: var(--text-muted); margin-top: 0.4rem; }
 
   /* ── FOOTER ───────────────────────────────────────── */
   footer {
-    border-top: 1px solid var(--border);
-    background: var(--white);
-    padding: 2.2rem 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 1rem;
+    border-top: 1px solid var(--border); background: var(--white);
+    padding: 2.2rem 3rem; display: flex;
+    align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
   }
-  footer p {
-    font-size: 0.75rem;
-    font-weight: 300;
-    color: var(--text-muted);
-    letter-spacing: 0.04em;
-  }
-  footer a {
-    font-size: 0.75rem;
-    font-weight: 300;
-    color: var(--text-muted);
-    text-decoration: none;
-    letter-spacing: 0.04em;
-    transition: color 0.2s;
-  }
+  footer p { font-size: 0.75rem; font-weight: 300; color: var(--text-muted); letter-spacing: 0.04em; }
+  footer a { font-size: 0.75rem; font-weight: 300; color: var(--text-muted); text-decoration: none; letter-spacing: 0.04em; transition: color 0.2s; }
   footer a:hover { color: var(--text); }
 
-  /* ── PEARL CARD (used in hero area accent) ────────── */
-  .pearl-bar {
-    width: 40px; height: 2px;
-    background: linear-gradient(90deg, var(--silver-light), var(--silver), var(--silver-light));
-    border-radius: 1px;
-    margin: 0 auto 2rem;
-    opacity: 0.6;
+  /* ── RESPONSIVE ───────────────────────────────────── */
+  @media (max-width: 720px) {
+    nav { padding: 1rem 1.5rem; }
+    nav .nav-link { display: none; }
+    section { padding: 5rem 1.5rem; }
+    .approach-grid, .conf-layout, .contact-cols { grid-template-columns: 1fr; gap: 2.5rem; }
   }
   </style>
 </head>
@@ -578,28 +472,33 @@
   <nav>
     <a class="logo" href="#hero"><strong>ANTI</strong>CARBON</a>
     <div class="nav-right">
-      <a class="nav-link" href="#what">Services</a>
-      <a class="nav-link" href="#approach">Approach</a>
-      <a class="nav-link" href="#confidentiality">Privacy</a>
-      <a class="contact-btn" href="#contact">Contact</a>
+      <a class="nav-link" href="#what"    data-i18n="nav-services">Services</a>
+      <a class="nav-link" href="#approach" data-i18n="nav-approach">Approach</a>
+      <a class="nav-link" href="#confidentiality" data-i18n="nav-privacy">Privacy</a>
+      <button class="lang-toggle" id="langToggle" onclick="toggleLang()" aria-label="Switch language">
+        <span class="lang-opt active" id="opt-en">EN</span>
+        <span class="lang-sep">·</span>
+        <span class="lang-opt" id="opt-es">ES</span>
+      </button>
+      <a class="contact-btn" href="#contact" data-i18n="nav-contact">Contact</a>
     </div>
   </nav>
 
   <!-- HERO -->
   <section id="hero">
     <div class="hero-inner">
-      <p class="eyebrow">AI · Business Intelligence · El Salvador</p>
-      <h1>Where data becomes<br/><em>quiet certainty</em></h1>
-      <p class="hero-sub">
+      <p class="eyebrow" data-i18n="hero-eyebrow">AI · Business Intelligence · El Salvador</p>
+      <h1 data-i18n="hero-h1">Where data becomes<br/><em>quiet certainty</em></h1>
+      <p class="hero-sub" data-i18n="hero-sub">
         ANTICARBON brings state-of-the-art AI-powered intelligence to businesses and institutions that demand both precision and absolute discretion.
       </p>
       <div class="hero-actions">
-        <a class="btn-primary" href="#contact">Request a Private Briefing</a>
-        <a class="btn-ghost" href="#what">Explore our services</a>
+        <a class="btn-primary" href="#contact" data-i18n="hero-cta-primary">Request a Private Briefing</a>
+        <a class="btn-ghost"   href="#what"    data-i18n="hero-cta-ghost">Explore our services</a>
       </div>
       <div class="origin-badge">
         <span>🇸🇻</span>
-        <span>El Salvador &nbsp;·&nbsp; Serving organizations worldwide</span>
+        <span data-i18n="hero-origin">El Salvador &nbsp;·&nbsp; Serving organizations worldwide</span>
       </div>
     </div>
   </section>
@@ -607,20 +506,18 @@
   <!-- WHAT WE DO -->
   <section id="what">
     <div class="container">
-      <p class="section-label">Services</p>
-      <h2 class="section-title">Intelligence built for decisions<br/>that <em>cannot wait</em></h2>
-      <p class="section-body">
+      <p class="section-label" data-i18n="what-label">Services</p>
+      <h2 class="section-title" data-i18n="what-title">Intelligence built for decisions<br/>that <em>cannot wait</em></h2>
+      <p class="section-body" data-i18n="what-body">
         We unite advanced artificial intelligence with deep business-intelligence craft — surfacing insight with a speed and precision that traditional analytics cannot approach.
       </p>
 
       <div class="pillars">
 
         <div class="pillar">
-          <div class="pillar-icon">
-            <svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-          </div>
-          <h3>Real-Time Analytics</h3>
-          <p>Live dashboards and automated signal monitoring surface what matters the moment it changes — no lag, no guesswork.</p>
+          <div class="pillar-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <h3 data-i18n="p1-title">Real-Time Analytics</h3>
+          <p  data-i18n="p1-body">Live dashboards and automated signal monitoring surface what matters the moment it changes — no lag, no guesswork.</p>
         </div>
 
         <div class="pillar">
@@ -630,8 +527,8 @@
               <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
             </svg>
           </div>
-          <h3>Predictive Intelligence</h3>
-          <p>Domain-specific AI models anticipate trends, risks, and opportunities before they surface in conventional reports.</p>
+          <h3 data-i18n="p2-title">Predictive Intelligence</h3>
+          <p  data-i18n="p2-body">Domain-specific AI models anticipate trends, risks, and opportunities before they surface in conventional reports.</p>
         </div>
 
         <div class="pillar">
@@ -641,8 +538,8 @@
               <path d="M3 9h18M9 21V9"/>
             </svg>
           </div>
-          <h3>Custom BI Platforms</h3>
-          <p>Purpose-built intelligence environments, integrated with your existing data infrastructure and shaped to your organization.</p>
+          <h3 data-i18n="p3-title">Custom BI Platforms</h3>
+          <p  data-i18n="p3-body">Purpose-built intelligence environments, integrated with your existing data infrastructure and shaped to your organization.</p>
         </div>
 
         <div class="pillar">
@@ -653,8 +550,8 @@
               <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
             </svg>
           </div>
-          <h3>Institutional Advisory</h3>
-          <p>Strategic counsel for governments, financial bodies, and enterprises navigating data-driven transformation at scale.</p>
+          <h3 data-i18n="p4-title">Institutional Advisory</h3>
+          <p  data-i18n="p4-body">Strategic counsel for governments, financial bodies, and enterprises navigating data-driven transformation at scale.</p>
         </div>
 
         <div class="pillar">
@@ -665,18 +562,16 @@
               <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
             </svg>
           </div>
-          <h3>Data Engineering</h3>
-          <p>End-to-end pipeline architecture, warehousing, and ETL design — giving your AI models a trustworthy foundation.</p>
+          <h3 data-i18n="p5-title">Data Engineering</h3>
+          <p  data-i18n="p5-body">End-to-end pipeline architecture, warehousing, and ETL design — giving your AI models a trustworthy foundation.</p>
         </div>
 
         <div class="pillar">
           <div class="pillar-icon">
-            <svg viewBox="0 0 24 24">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            </svg>
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           </div>
-          <h3>Confidential Operations</h3>
-          <p>Every engagement is governed by binding NDAs, air-gapped deployment options, and architecture designed for zero exposure.</p>
+          <h3 data-i18n="p6-title">Confidential Operations</h3>
+          <p  data-i18n="p6-body">Every engagement is governed by binding NDAs, air-gapped deployment options, and architecture designed for zero exposure.</p>
         </div>
 
       </div>
@@ -686,95 +581,65 @@
   <!-- APPROACH -->
   <section id="approach">
     <div class="container">
-      <p class="section-label">Approach</p>
-      <h2 class="section-title">Precision-crafted,<br/><em>discreetly delivered</em></h2>
+      <p class="section-label" data-i18n="approach-label">Approach</p>
+      <h2 class="section-title" data-i18n="approach-title">Precision-crafted,<br/><em>discreetly delivered</em></h2>
 
       <div class="approach-grid">
-
         <ul class="steps">
           <li class="step">
             <span class="step-num">01</span>
             <div class="step-text">
-              <h4>Discovery &amp; Scoping</h4>
-              <p>A confidential briefing to map your data landscape, objectives, and sensitivity requirements with no information leaving the room.</p>
+              <h4 data-i18n="s1-title">Discovery &amp; Scoping</h4>
+              <p  data-i18n="s1-body">A confidential briefing to map your data landscape, objectives, and sensitivity requirements with no information leaving the room.</p>
             </div>
           </li>
           <li class="step">
             <span class="step-num">02</span>
             <div class="step-text">
-              <h4>Architecture Design</h4>
-              <p>Our engineers design a bespoke AI-BI stack — on-premise, cloud, or hybrid — aligned precisely to your compliance posture.</p>
+              <h4 data-i18n="s2-title">Architecture Design</h4>
+              <p  data-i18n="s2-body">Our engineers design a bespoke AI-BI stack — on-premise, cloud, or hybrid — aligned precisely to your compliance posture.</p>
             </div>
           </li>
           <li class="step">
             <span class="step-num">03</span>
             <div class="step-text">
-              <h4>Model Development</h4>
-              <p>Domain-specific models trained and refined iteratively with your team until performance meets exacting standards.</p>
+              <h4 data-i18n="s3-title">Model Development</h4>
+              <p  data-i18n="s3-body">Domain-specific models trained and refined iteratively with your team until performance meets exacting standards.</p>
             </div>
           </li>
           <li class="step">
             <span class="step-num">04</span>
             <div class="step-text">
-              <h4>Deployment &amp; Partnership</h4>
-              <p>We deploy, integrate, and train your analysts — and remain available for continuous refinement as your needs evolve.</p>
+              <h4 data-i18n="s4-title">Deployment &amp; Partnership</h4>
+              <p  data-i18n="s4-body">We deploy, integrate, and train your analysts — and remain available for continuous refinement as your needs evolve.</p>
             </div>
           </li>
         </ul>
 
         <div class="approach-visual" aria-hidden="true">
           <svg viewBox="0 0 280 230" xmlns="http://www.w3.org/2000/svg">
-            <!-- Soft grid -->
             <line x1="30" y1="185" x2="255" y2="185" stroke="#E0E2EC" stroke-width="1"/>
             <line x1="30" y1="145" x2="255" y2="145" stroke="#E0E2EC" stroke-width="1"/>
             <line x1="30" y1="105" x2="255" y2="105" stroke="#E0E2EC" stroke-width="1"/>
             <line x1="30" y1="65"  x2="255" y2="65"  stroke="#E0E2EC" stroke-width="1"/>
-
-            <!-- Define pearl gradient for bars -->
             <defs>
-              <linearGradient id="barGrad1" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%"   stop-color="#C8CCDe"/>
-                <stop offset="100%" stop-color="#E8EAF4"/>
-              </linearGradient>
-              <linearGradient id="barGrad2" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%"   stop-color="#9DA4BC"/>
-                <stop offset="100%" stop-color="#C8CCDe"/>
-              </linearGradient>
-              <linearGradient id="barGrad3" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%"   stop-color="#7A82A0"/>
-                <stop offset="100%" stop-color="#9DA4BC"/>
-              </linearGradient>
-              <linearGradient id="barGrad4" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%"   stop-color="#555E7A"/>
-                <stop offset="100%" stop-color="#7A82A0"/>
-              </linearGradient>
+              <linearGradient id="bg1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#C8CCDe"/><stop offset="100%" stop-color="#E8EAF4"/></linearGradient>
+              <linearGradient id="bg2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#9DA4BC"/><stop offset="100%" stop-color="#C8CCDe"/></linearGradient>
+              <linearGradient id="bg3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#7A82A0"/><stop offset="100%" stop-color="#9DA4BC"/></linearGradient>
+              <linearGradient id="bg4" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#555E7A"/><stop offset="100%" stop-color="#7A82A0"/></linearGradient>
             </defs>
-
-            <!-- Bars -->
-            <rect x="55"  y="145" width="32" height="40"  rx="2" fill="url(#barGrad1)"/>
-            <rect x="110" y="115" width="32" height="70"  rx="2" fill="url(#barGrad2)"/>
-            <rect x="165" y="82"  width="32" height="103" rx="2" fill="url(#barGrad3)"/>
-            <rect x="220" y="46"  width="32" height="139" rx="2" fill="url(#barGrad4)"/>
-
-            <!-- Trend curve -->
-            <path d="M71,145 C90,120 130,110 146,115 C162,120 185,75 236,46"
-                  fill="none" stroke="#9DA4BC" stroke-width="1.5"
-                  stroke-dasharray="4 3" stroke-linecap="round"/>
-
-            <!-- Dots on trend -->
+            <rect x="55"  y="145" width="32" height="40"  rx="2" fill="url(#bg1)"/>
+            <rect x="110" y="115" width="32" height="70"  rx="2" fill="url(#bg2)"/>
+            <rect x="165" y="82"  width="32" height="103" rx="2" fill="url(#bg3)"/>
+            <rect x="220" y="46"  width="32" height="139" rx="2" fill="url(#bg4)"/>
+            <path d="M71,145 C90,120 130,110 146,115 C162,120 185,75 236,46" fill="none" stroke="#9DA4BC" stroke-width="1.5" stroke-dasharray="4 3" stroke-linecap="round"/>
             <circle cx="71"  cy="145" r="3.5" fill="white" stroke="#9DA4BC" stroke-width="1.5"/>
             <circle cx="126" cy="112" r="3.5" fill="white" stroke="#9DA4BC" stroke-width="1.5"/>
             <circle cx="181" cy="78"  r="3.5" fill="white" stroke="#9DA4BC" stroke-width="1.5"/>
             <circle cx="236" cy="46"  r="3.5" fill="white" stroke="#9DA4BC" stroke-width="1.5"/>
-
-            <!-- Label -->
-            <text x="140" y="218" text-anchor="middle" font-size="9.5"
-                  fill="#8890A6" font-family="Inter, sans-serif" letter-spacing="0.08em">
-              INTELLIGENCE TRAJECTORY
-            </text>
+            <text id="chart-label" x="140" y="218" text-anchor="middle" font-size="9.5" fill="#8890A6" font-family="Inter, sans-serif" letter-spacing="0.08em">INTELLIGENCE TRAJECTORY</text>
           </svg>
         </div>
-
       </div>
     </div>
   </section>
@@ -782,32 +647,29 @@
   <!-- CONFIDENTIALITY -->
   <section id="confidentiality">
     <div class="container">
-      <p class="section-label">Confidentiality</p>
-      <h2 class="section-title">Your data stays yours.<br/><em>Always.</em></h2>
+      <p class="section-label" data-i18n="conf-label">Confidentiality</p>
+      <h2 class="section-title" data-i18n="conf-title">Your data stays yours.<br/><em>Always.</em></h2>
 
       <div class="conf-layout">
-
         <div>
-          <p class="section-body" style="max-width:100%;">
+          <p class="section-body" style="max-width:100%;" data-i18n="conf-body">
             ANTICARBON was founded for organizations that cannot afford exposure. Every engagement is handled with the discretion of a strategic intelligence operation, not a conventional software project.
           </p>
-
           <div class="conf-statement">
-            <p>"We do not disclose client relationships, project scopes, or any operational detail — to anyone, under any circumstances."</p>
+            <p data-i18n="conf-quote">"We do not disclose client relationships, project scopes, or any operational detail — to anyone, under any circumstances."</p>
           </div>
         </div>
 
         <ul class="conf-bullets">
-          <li>Binding NDA before any conversation begins</li>
-          <li>Zero third-party data sharing or sub-processing</li>
-          <li>Air-gapped deployment options available</li>
-          <li>On-premise infrastructure where required</li>
-          <li>Role-based access control &amp; audit trails</li>
-          <li>End-to-end encrypted communication channels</li>
-          <li>Compartmentalized project teams</li>
-          <li>Client identity protected internally</li>
+          <li data-i18n="cb1">Binding NDA before any conversation begins</li>
+          <li data-i18n="cb2">Zero third-party data sharing or sub-processing</li>
+          <li data-i18n="cb3">Air-gapped deployment options available</li>
+          <li data-i18n="cb4">On-premise infrastructure where required</li>
+          <li data-i18n="cb5">Role-based access control &amp; audit trails</li>
+          <li data-i18n="cb6">End-to-end encrypted communication channels</li>
+          <li data-i18n="cb7">Compartmentalized project teams</li>
+          <li data-i18n="cb8">Client identity protected internally</li>
         </ul>
-
       </div>
     </div>
   </section>
@@ -815,49 +677,43 @@
   <!-- CONTACT -->
   <section id="contact">
     <div class="container">
-      <p class="section-label">Contact</p>
-      <h2 class="section-title">Begin a<br/><em>confidential conversation</em></h2>
+      <p class="section-label" data-i18n="contact-label">Contact</p>
+      <h2 class="section-title" data-i18n="contact-title">Begin a<br/><em>confidential conversation</em></h2>
 
       <div class="contact-cols">
-
         <div class="contact-aside">
-          <p>
-            We welcome inquiries from organizations at any stage of their intelligence journey — from early exploration to urgent operational need.
-          </p>
-          <p>
-            All communications are treated with strict confidentiality from the first message. We respond within one business day.
-          </p>
+          <p data-i18n="contact-p1">We welcome inquiries from organizations at any stage of their intelligence journey — from early exploration to urgent operational need.</p>
+          <p data-i18n="contact-p2">All communications are treated with strict confidentiality from the first message. We respond within one business day.</p>
           <div class="contact-detail">
             <a href="mailto:contact@anticarbon.me">contact@anticarbon.me</a>
-            <span style="font-size:0.78rem; color:var(--text-muted); font-weight:300;">El Salvador &nbsp;·&nbsp; Global Engagements</span>
+            <span style="font-size:0.78rem; color:var(--text-muted); font-weight:300;" data-i18n="contact-location">El Salvador &nbsp;·&nbsp; Global Engagements</span>
           </div>
         </div>
 
         <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
           <div class="field">
-            <label for="name">Full Name</label>
-            <input id="name" name="name" type="text" placeholder="Your name" required />
+            <label for="name" data-i18n="label-name">Full Name</label>
+            <input id="name" name="name" type="text" data-i18n-ph="ph-name" placeholder="Your name" required />
           </div>
           <div class="field">
-            <label for="org">Organization</label>
-            <input id="org" name="organization" type="text" placeholder="Company or institution" />
+            <label for="org" data-i18n="label-org">Organization</label>
+            <input id="org" name="organization" type="text" data-i18n-ph="ph-org" placeholder="Company or institution" />
           </div>
           <div class="field">
-            <label for="email">Email Address</label>
-            <input id="email" name="email" type="email" placeholder="you@organization.com" required />
+            <label for="email" data-i18n="label-email">Email Address</label>
+            <input id="email" name="email" type="email" data-i18n-ph="ph-email" placeholder="you@organization.com" required />
           </div>
           <div class="field">
-            <label for="message">How can we help?</label>
-            <textarea id="message" name="message" placeholder="A brief description of your intelligence needs…" required></textarea>
+            <label for="message" data-i18n="label-message">How can we help?</label>
+            <textarea id="message" name="message" data-i18n-ph="ph-message" placeholder="A brief description of your intelligence needs…" required></textarea>
           </div>
           <div style="margin-top:0.5rem;">
-            <button type="submit" class="btn-primary" style="cursor:pointer; border:none; font-family:inherit; width:100%;">
+            <button type="submit" class="btn-primary" style="cursor:pointer; border:none; font-family:inherit; width:100%;" data-i18n="form-submit">
               Send Message
             </button>
           </div>
-          <p class="form-note">Your message is encrypted in transit and treated with strict confidentiality.</p>
+          <p class="form-note" data-i18n="form-note">Your message is encrypted in transit and treated with strict confidentiality.</p>
         </form>
-
       </div>
     </div>
   </section>
@@ -865,9 +721,183 @@
   <!-- FOOTER -->
   <footer>
     <a class="logo" href="#hero"><strong>ANTI</strong>CARBON</a>
-    <p>© 2025 ANTICARBON &nbsp;·&nbsp; El Salvador &nbsp;·&nbsp; All rights reserved.</p>
+    <p data-i18n="footer-copy">© 2025 ANTICARBON &nbsp;·&nbsp; El Salvador &nbsp;·&nbsp; All rights reserved.</p>
     <a href="mailto:contact@anticarbon.me">contact@anticarbon.me</a>
   </footer>
+
+  <script>
+  const T = {
+    en: {
+      'nav-services':    'Services',
+      'nav-approach':    'Approach',
+      'nav-privacy':     'Privacy',
+      'nav-contact':     'Contact',
+      'hero-eyebrow':    'AI · Business Intelligence · El Salvador',
+      'hero-h1':         'Where data becomes<br/><em>quiet certainty</em>',
+      'hero-sub':        'ANTICARBON brings state-of-the-art AI-powered intelligence to businesses and institutions that demand both precision and absolute discretion.',
+      'hero-cta-primary':'Request a Private Briefing',
+      'hero-cta-ghost':  'Explore our services',
+      'hero-origin':     'El Salvador\u00a0·\u00a0Serving organizations worldwide',
+      'what-label':      'Services',
+      'what-title':      'Intelligence built for decisions<br/>that <em>cannot wait</em>',
+      'what-body':       'We unite advanced artificial intelligence with deep business-intelligence craft — surfacing insight with a speed and precision that traditional analytics cannot approach.',
+      'p1-title': 'Real-Time Analytics',
+      'p1-body':  'Live dashboards and automated signal monitoring surface what matters the moment it changes — no lag, no guesswork.',
+      'p2-title': 'Predictive Intelligence',
+      'p2-body':  'Domain-specific AI models anticipate trends, risks, and opportunities before they surface in conventional reports.',
+      'p3-title': 'Custom BI Platforms',
+      'p3-body':  'Purpose-built intelligence environments, integrated with your existing data infrastructure and shaped to your organization.',
+      'p4-title': 'Institutional Advisory',
+      'p4-body':  'Strategic counsel for governments, financial bodies, and enterprises navigating data-driven transformation at scale.',
+      'p5-title': 'Data Engineering',
+      'p5-body':  'End-to-end pipeline architecture, warehousing, and ETL design — giving your AI models a trustworthy foundation.',
+      'p6-title': 'Confidential Operations',
+      'p6-body':  'Every engagement is governed by binding NDAs, air-gapped deployment options, and architecture designed for zero exposure.',
+      'approach-label': 'Approach',
+      'approach-title': 'Precision-crafted,<br/><em>discreetly delivered</em>',
+      's1-title': 'Discovery &amp; Scoping',
+      's1-body':  'A confidential briefing to map your data landscape, objectives, and sensitivity requirements with no information leaving the room.',
+      's2-title': 'Architecture Design',
+      's2-body':  'Our engineers design a bespoke AI-BI stack — on-premise, cloud, or hybrid — aligned precisely to your compliance posture.',
+      's3-title': 'Model Development',
+      's3-body':  'Domain-specific models trained and refined iteratively with your team until performance meets exacting standards.',
+      's4-title': 'Deployment &amp; Partnership',
+      's4-body':  'We deploy, integrate, and train your analysts — and remain available for continuous refinement as your needs evolve.',
+      'chart-label': 'INTELLIGENCE TRAJECTORY',
+      'conf-label': 'Confidentiality',
+      'conf-title': 'Your data stays yours.<br/><em>Always.</em>',
+      'conf-body':  'ANTICARBON was founded for organizations that cannot afford exposure. Every engagement is handled with the discretion of a strategic intelligence operation, not a conventional software project.',
+      'conf-quote': '\u201cWe do not disclose client relationships, project scopes, or any operational detail — to anyone, under any circumstances.\u201d',
+      'cb1': 'Binding NDA before any conversation begins',
+      'cb2': 'Zero third-party data sharing or sub-processing',
+      'cb3': 'Air-gapped deployment options available',
+      'cb4': 'On-premise infrastructure where required',
+      'cb5': 'Role-based access control &amp; audit trails',
+      'cb6': 'End-to-end encrypted communication channels',
+      'cb7': 'Compartmentalized project teams',
+      'cb8': 'Client identity protected internally',
+      'contact-label': 'Contact',
+      'contact-title': 'Begin a<br/><em>confidential conversation</em>',
+      'contact-p1': 'We welcome inquiries from organizations at any stage of their intelligence journey — from early exploration to urgent operational need.',
+      'contact-p2': 'All communications are treated with strict confidentiality from the first message. We respond within one business day.',
+      'contact-location': 'El Salvador\u00a0·\u00a0Global Engagements',
+      'label-name':    'Full Name',
+      'label-org':     'Organization',
+      'label-email':   'Email Address',
+      'label-message': 'How can we help?',
+      'ph-name':    'Your name',
+      'ph-org':     'Company or institution',
+      'ph-email':   'you@organization.com',
+      'ph-message': 'A brief description of your intelligence needs\u2026',
+      'form-submit': 'Send Message',
+      'form-note':   'Your message is encrypted in transit and treated with strict confidentiality.',
+      'footer-copy': '\u00a9 2025 ANTICARBON\u00a0\u00b7\u00a0El Salvador\u00a0\u00b7\u00a0All rights reserved.',
+    },
+    es: {
+      'nav-services':    'Servicios',
+      'nav-approach':    'Enfoque',
+      'nav-privacy':     'Privacidad',
+      'nav-contact':     'Contacto',
+      'hero-eyebrow':    'IA · Inteligencia de Negocios · El Salvador',
+      'hero-h1':         'Donde los datos se convierten en<br/><em>certeza silenciosa</em>',
+      'hero-sub':        'ANTICARBON lleva inteligencia de vanguardia impulsada por IA a empresas e instituciones que exigen precisión y discreción absoluta.',
+      'hero-cta-primary':'Solicitar un Informe Privado',
+      'hero-cta-ghost':  'Explorar nuestros servicios',
+      'hero-origin':     'El Salvador\u00a0·\u00a0Al servicio de organizaciones globales',
+      'what-label':      'Servicios',
+      'what-title':      'Inteligencia construida para decisiones<br/>que <em>no pueden esperar</em>',
+      'what-body':       'Unimos inteligencia artificial avanzada con una profunda experiencia en business intelligence — revelando perspectivas con una velocidad y precisión que los análisis tradicionales no pueden alcanzar.',
+      'p1-title': 'Analítica en Tiempo Real',
+      'p1-body':  'Dashboards en vivo y monitoreo automatizado de señales que muestran lo que importa en el momento en que cambia — sin retrasos ni suposiciones.',
+      'p2-title': 'Inteligencia Predictiva',
+      'p2-body':  'Modelos de IA específicos del dominio que anticipan tendencias, riesgos y oportunidades antes de que aparezcan en los informes convencionales.',
+      'p3-title': 'Plataformas BI Personalizadas',
+      'p3-body':  'Entornos de inteligencia diseñados a medida, integrados con su infraestructura de datos existente y adaptados a su organización.',
+      'p4-title': 'Asesoría Institucional',
+      'p4-body':  'Consultoría estratégica para gobiernos, organismos financieros y empresas que navegan la transformación basada en datos a escala.',
+      'p5-title': 'Ingeniería de Datos',
+      'p5-body':  'Arquitectura de pipelines de extremo a extremo, almacenamiento y diseño ETL — dando a sus modelos de IA una base confiable.',
+      'p6-title': 'Operaciones Confidenciales',
+      'p6-body':  'Cada proyecto está regido por NDAs vinculantes, opciones de despliegue air-gapped y arquitectura diseñada para cero exposición.',
+      'approach-label': 'Enfoque',
+      'approach-title': 'Diseñado con precisión,<br/><em>entregado con discreción</em>',
+      's1-title': 'Descubrimiento y Alcance',
+      's1-body':  'Un briefing confidencial para mapear su panorama de datos, objetivos y requisitos de sensibilidad, sin que ninguna información salga de la sala.',
+      's2-title': 'Diseño de Arquitectura',
+      's2-body':  'Nuestros ingenieros diseñan un stack AI-BI a medida — on-premise, cloud o híbrido — alineado con su postura de cumplimiento.',
+      's3-title': 'Desarrollo de Modelos',
+      's3-body':  'Modelos específicos del dominio entrenados y refinados de forma iterativa con su equipo hasta alcanzar estándares rigurosos.',
+      's4-title': 'Despliegue y Acompañamiento',
+      's4-body':  'Desplegamos, integramos y capacitamos a sus analistas — y permanecemos disponibles para refinamiento continuo a medida que sus necesidades evolucionan.',
+      'chart-label': 'TRAYECTORIA DE INTELIGENCIA',
+      'conf-label': 'Confidencialidad',
+      'conf-title': 'Sus datos son suyos.<br/><em>Siempre.</em>',
+      'conf-body':  'ANTICARBON fue fundada para organizaciones que no pueden permitirse la exposición. Cada proyecto se maneja con la discreción de una operación de inteligencia estratégica, no de un proyecto de software convencional.',
+      'conf-quote': '\u201cNo revelamos relaciones con clientes, alcances de proyectos ni ningún detalle operativo — a nadie, bajo ninguna circunstancia.\u201d',
+      'cb1': 'NDA vinculante antes de cualquier conversación',
+      'cb2': 'Cero compartición de datos con terceros',
+      'cb3': 'Opciones de despliegue air-gapped disponibles',
+      'cb4': 'Infraestructura on-premise cuando se requiera',
+      'cb5': 'Control de acceso basado en roles y auditorías',
+      'cb6': 'Canales de comunicación cifrados de extremo a extremo',
+      'cb7': 'Equipos de proyecto compartimentados',
+      'cb8': 'Identidad del cliente protegida internamente',
+      'contact-label': 'Contacto',
+      'contact-title': 'Inicie una<br/><em>conversación confidencial</em>',
+      'contact-p1': 'Recibimos consultas de organizaciones en cualquier etapa de su proceso de inteligencia — desde la exploración inicial hasta necesidades operativas urgentes.',
+      'contact-p2': 'Todas las comunicaciones son tratadas con estricta confidencialidad desde el primer mensaje. Respondemos en un día hábil.',
+      'contact-location': 'El Salvador\u00a0·\u00a0Proyectos Globales',
+      'label-name':    'Nombre Completo',
+      'label-org':     'Organización',
+      'label-email':   'Correo Electrónico',
+      'label-message': '¿Cómo podemos ayudarle?',
+      'ph-name':    'Su nombre',
+      'ph-org':     'Empresa o institución',
+      'ph-email':   'usted@organizacion.com',
+      'ph-message': 'Una breve descripción de sus necesidades de inteligencia\u2026',
+      'form-submit': 'Enviar Mensaje',
+      'form-note':   'Su mensaje está cifrado en tránsito y es tratado con estricta confidencialidad.',
+      'footer-copy': '\u00a9 2025 ANTICARBON\u00a0\u00b7\u00a0El Salvador\u00a0\u00b7\u00a0Todos los derechos reservados.',
+    }
+  };
+
+  let lang = localStorage.getItem('ac-lang') || 'en';
+
+  function applyLang(l) {
+    lang = l;
+    const dict = T[l];
+    document.documentElement.lang = l;
+
+    // innerHTML elements
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      if (dict[key] !== undefined) el.innerHTML = dict[key];
+    });
+
+    // placeholder elements
+    document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+      const key = el.dataset.i18nPh;
+      if (dict[key] !== undefined) el.placeholder = dict[key];
+    });
+
+    // SVG text node (chart label uses id shortcut)
+    const chartEl = document.getElementById('chart-label');
+    if (chartEl && dict['chart-label']) chartEl.textContent = dict['chart-label'];
+
+    // Toggle indicators
+    document.getElementById('opt-en').classList.toggle('active', l === 'en');
+    document.getElementById('opt-es').classList.toggle('active', l === 'es');
+
+    localStorage.setItem('ac-lang', l);
+  }
+
+  function toggleLang() {
+    applyLang(lang === 'en' ? 'es' : 'en');
+  }
+
+  // Apply saved preference on load
+  applyLang(lang);
+  </script>
 
 </body>
 </html>
