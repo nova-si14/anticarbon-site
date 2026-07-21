@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sirius — Open data on AI &amp; education · ANTICARBON</title>
+  <meta name="description" content="Sirius is a free, open data explorer for artificial intelligence and education — a lightweight tool in the spirit of the last MIT-licensed Our World in Data Grapher." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  :root{
+    --bg:#F9F8F6; --white:#FFFFFF; --surface:#F4F4F7; --border:#E0E2EC; --border-pearl:#D8DAEA;
+    --text:#17171E; --text-mid:#3E4055; --text-muted:#8890A6;
+    --silver:#9DA4BC; --silver-light:#C8CCDe; --silver-dark:#6B7190;
+    --edu:#B0803A; --edu-soft:rgba(176,128,58,.13); --ai:#5B60B8; --ai-soft:rgba(91,96,184,.12);
+  }
+  html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+
+  /* top bar */
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:1rem;
+    padding:1rem 2rem;background:rgba(249,248,246,.9);backdrop-filter:blur(16px);
+    border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50;}
+  .back{font-size:.78rem;letter-spacing:.04em;color:var(--text-muted);text-decoration:none;transition:color .2s;}
+  .back:hover{color:var(--text);}
+  .brand{display:flex;flex-direction:column;align-items:center;line-height:1.15;}
+  .wordmark{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.35rem;letter-spacing:.34em;padding-left:.34em;color:var(--text);}
+  .byline{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-muted);}
+  .lang-toggle{display:flex;align-items:center;gap:.35rem;background:none;border:none;cursor:pointer;padding:.3rem 0;font-family:'Inter',sans-serif;}
+  .lang-opt{font-size:.72rem;font-weight:400;letter-spacing:.14em;color:var(--text-muted);transition:color .2s;line-height:1;}
+  .lang-opt.active{font-weight:600;color:var(--text);}
+  .lang-sep{font-size:.65rem;color:var(--silver-light);}
+
+  .tagline{max-width:1180px;margin:1.6rem auto .4rem;padding:0 2rem;
+    font-size:.92rem;font-weight:300;color:var(--text-mid);line-height:1.7;}
+  .tagline em{font-style:italic;color:var(--silver-dark);}
+
+  /* app layout */
+  .app{max-width:1180px;margin:1rem auto 0;padding:0 2rem 1rem;
+    display:grid;grid-template-columns:250px 1fr;gap:1.6rem;align-items:start;}
+
+  .catalog{position:sticky;top:88px;border:1px solid var(--border);border-radius:10px;background:var(--white);padding:1.1rem 1rem;}
+  .cat-head{font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--silver-dark);margin-bottom:.8rem;}
+  .cat-group{margin-bottom:1rem;}
+  .cat-group:last-child{margin-bottom:0;}
+  .cat-theme{font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+    display:flex;align-items:center;gap:.45rem;margin:.2rem 0 .5rem;}
+  .cat-theme::before{content:'';width:8px;height:8px;border-radius:2px;}
+  .cat-theme.edu{color:var(--edu);} .cat-theme.edu::before{background:var(--edu);}
+  .cat-theme.ai{color:var(--ai);} .cat-theme.ai::before{background:var(--ai);}
+  .cat-item{display:block;width:100%;text-align:left;background:none;border:none;cursor:pointer;
+    font-family:'Inter',sans-serif;font-size:.83rem;font-weight:400;color:var(--text-mid);
+    padding:.5rem .6rem;border-radius:6px;border-left:2px solid transparent;line-height:1.35;transition:background .18s,color .18s,border-color .18s;}
+  .cat-item:hover{background:var(--bg);color:var(--text);}
+  .cat-item.active{background:var(--surface);color:var(--text);font-weight:500;}
+  .cat-item.edu.active{border-left-color:var(--edu);}
+  .cat-item.ai.active{border-left-color:var(--ai);}
+
+  /* viewer */
+  .viewer{border:1px solid var(--border);border-radius:10px;background:var(--white);padding:1.8rem 1.9rem 1.5rem;min-height:520px;}
+  .v-kicker{font-size:.6rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;display:inline-flex;align-items:center;gap:.45rem;}
+  .v-kicker::before{content:'';width:8px;height:8px;border-radius:2px;}
+  .v-kicker.edu{color:var(--edu);} .v-kicker.edu::before{background:var(--edu);}
+  .v-kicker.ai{color:var(--ai);} .v-kicker.ai::before{background:var(--ai);}
+  .viewer h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:1.9rem;line-height:1.15;color:var(--text);margin:.35rem 0 .3rem;}
+  #subtitle{font-size:.86rem;font-weight:300;color:var(--text-muted);line-height:1.5;}
+
+  .v-tabs{display:flex;align-items:center;gap:.4rem;margin:1.3rem 0 .4rem;border-bottom:1px solid var(--border);padding-bottom:.1rem;}
+  .v-tabs button{font-family:'Inter',sans-serif;font-size:.76rem;font-weight:500;letter-spacing:.06em;
+    background:none;border:none;cursor:pointer;color:var(--text-muted);padding:.5rem .3rem;
+    border-bottom:2px solid transparent;margin-bottom:-1px;transition:color .18s,border-color .18s;}
+  .v-tabs button:hover{color:var(--text);}
+  .v-tabs button.active{color:var(--text);border-bottom-color:var(--text);}
+  .v-tabs .spacer{flex:1;}
+  .v-tabs .ghost{color:var(--text-mid);border:1px solid var(--border-pearl);border-radius:5px;padding:.4rem .8rem;
+    display:inline-flex;align-items:center;gap:.4rem;margin-bottom:0;}
+  .v-tabs .ghost:hover{border-color:var(--silver);color:var(--text);}
+  .v-tabs .ghost svg{width:12px;height:12px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
+
+  .v-body{margin-top:.9rem;min-height:300px;}
+  .plot svg{width:100%;height:auto;display:block;overflow:visible;}
+  [data-tip],.plot{cursor:crosshair;}
+
+  /* chart primitives */
+  .chart .grid{stroke:var(--border);stroke-width:1;}
+  .chart .ref{stroke:var(--silver-light);stroke-width:1;stroke-dasharray:3 4;}
+  .chart .ax{font-family:'Inter',sans-serif;font-size:10px;fill:var(--text-muted);}
+  .chart .ref-t{font-family:'Inter',sans-serif;font-size:9px;fill:var(--text-muted);}
+  .chart .val{font-family:'Inter',sans-serif;font-size:10.5px;font-weight:600;fill:var(--text-mid);}
+  .chart .name{font-family:'Inter',sans-serif;font-size:9.5px;font-weight:500;fill:var(--text-mid);}
+  .chart .line{fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+  .chart .cross{stroke:var(--silver);stroke-width:1;stroke-dasharray:2 3;}
+  .theme-edu .line{stroke:var(--edu);} .theme-edu .area{fill:var(--edu-soft);}
+  .theme-edu .dot{fill:#fff;stroke:var(--edu);stroke-width:2;} .theme-edu .hl{fill:#fff;stroke:var(--edu);stroke-width:2.5;} .theme-edu .bar{fill:var(--edu);}
+  .theme-ai .line{stroke:var(--ai);} .theme-ai .area{fill:var(--ai-soft);}
+  .theme-ai .dot{fill:#fff;stroke:var(--ai);stroke-width:2;} .theme-ai .hl{fill:#fff;stroke:var(--ai);stroke-width:2.5;} .theme-ai .bar{fill:var(--ai);}
+
+  /* table */
+  .table{overflow-x:auto;}
+  .table table{border-collapse:collapse;width:100%;max-width:460px;font-size:.86rem;}
+  .table th{text-align:left;font-size:.64rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);padding:.55rem .7rem;border-bottom:1px solid var(--border);}
+  .table td{padding:.55rem .7rem;border-bottom:1px solid var(--border);color:var(--text-mid);font-weight:300;}
+  .table td:last-child{font-weight:500;color:var(--text);}
+  .table .tn{color:var(--text-muted);font-size:.78rem;margin-left:.4rem;}
+
+  .v-source{font-size:.7rem;font-weight:300;color:var(--text-muted);line-height:1.5;margin-top:1.2rem;border-top:1px solid var(--border);padding-top:.8rem;}
+
+  .foot{max-width:1180px;margin:0 auto;padding:1.5rem 2rem 3rem;font-size:.7rem;font-weight:300;color:var(--text-muted);line-height:1.6;}
+  .foot a{color:var(--text-mid);text-decoration:underline;text-decoration-color:var(--border-pearl);text-underline-offset:2px;}
+  .foot a:hover{color:var(--ai);}
+
+  .tt{position:fixed;z-index:100;pointer-events:none;background:var(--text);color:#fff;
+    font-family:'Inter',sans-serif;font-size:.72rem;padding:.4rem .65rem;border-radius:5px;white-space:nowrap;
+    opacity:0;transform:translateY(3px);transition:opacity .1s;box-shadow:0 6px 18px rgba(23,23,30,.22);}
+  .tt.show{opacity:1;transform:translateY(0);}
+
+  @media (max-width:800px){
+    .app{grid-template-columns:1fr;}
+    .catalog{position:static;}
+    .topbar{padding:1rem 1.3rem;} .tagline,.app{padding-left:1.3rem;padding-right:1.3rem;}
+    .viewer{padding:1.4rem 1.2rem 1.2rem;}
+  }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <a class="back" href="../" data-s="back">← anticarbon.me</a>
+    <div class="brand">
+      <span class="wordmark">SIRIUS</span>
+      <span class="byline" data-s="byline">by ANTICARBON · v0.1</span>
+    </div>
+    <button class="lang-toggle" id="langToggle" aria-label="Switch language">
+      <span class="lang-opt active" id="opt-en">EN</span>
+      <span class="lang-sep">·</span>
+      <span class="lang-opt" id="opt-es">ES</span>
+    </button>
+  </header>
+
+  <p class="tagline" data-s="tagline">Open data on AI &amp; education — a lightweight explorer in the spirit of the last MIT-licensed Our World in Data Grapher.</p>
+
+  <div class="app">
+    <aside class="catalog" id="catalog"></aside>
+
+    <section class="viewer">
+      <span class="v-kicker" id="kicker"></span>
+      <h1 id="title"></h1>
+      <p id="subtitle"></p>
+
+      <div class="v-tabs">
+        <button id="tab-chart" class="active" data-s="tab-chart">Chart</button>
+        <button id="tab-table" data-s="tab-table">Table</button>
+        <span class="spacer"></span>
+        <button id="btn-csv" class="ghost" data-s="dl">
+          <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+          <span data-s="dl-t">Download CSV</span>
+        </button>
+      </div>
+
+      <div class="v-body">
+        <div id="plot" class="plot"></div>
+        <div id="table" class="table" hidden></div>
+      </div>
+
+      <p class="v-source" id="source"></p>
+    </section>
+  </div>
+
+  <footer class="foot"><span data-s="foot"></span></footer>
+  <div class="tt" id="tt"></div>
+
+  <script>
+  /* ── data model (OWID / Epoch AI, CC BY — selected years, approximate) ── */
+  const CHARTS = [
+    { id:'literacy', theme:'edu', kind:'area', yUnit:'pct', ymin:0, ymax:100, yTicks:[0,25,50,75,100],
+      xTicks:[1820,1900,1950,2000,2022],
+      data:[[1820,12],[1900,21],[1950,36],[1970,56],[1990,76],[2010,84],[2022,87]],
+      title:{en:'The long rise of world literacy', es:'El largo ascenso de la alfabetización mundial'},
+      sub:{en:"Share of the world's population able to read and write", es:'Porcentaje de la población mundial capaz de leer y escribir'},
+      src:{en:'Our World in Data — UNESCO; van Zanden et al. Selected years; approximate.', es:'Our World in Data — UNESCO; van Zanden et al. Años seleccionados; aproximado.'} },
+
+    { id:'schooling', theme:'edu', kind:'bar', yUnit:'num', unit:{en:'yrs',es:'años'}, ymin:0, ymax:10, yTicks:[0,2,4,6,8,10],
+      data:[[1870,0.5],[1900,1.0],[1950,2.9],[1980,4.8],[2000,7.2],[2020,8.7]],
+      title:{en:'A century of schooling', es:'Un siglo de escolarización'},
+      sub:{en:'Mean years of schooling, world average', es:'Años medios de escolarización, promedio mundial'},
+      src:{en:'Our World in Data — Lee & Lee; Barro & Lee; UNDP. Selected years; approximate.', es:'Our World in Data — Lee & Lee; Barro & Lee; PNUD. Años seleccionados; aproximado.'} },
+
+    { id:'internet', theme:'edu', kind:'area', yUnit:'pct', ymin:0, ymax:100, yTicks:[0,25,50,75,100],
+      xTicks:[1995,2005,2015,2023],
+      data:[[1995,0.8],[2000,6.8],[2005,16],[2010,29],[2015,40],[2020,60],[2023,66]],
+      title:{en:'Access to knowledge goes online', es:'El acceso al conocimiento se conecta'},
+      sub:{en:"Share of the world's population using the internet", es:'Porcentaje de la población mundial que usa internet'},
+      src:{en:'Our World in Data — ITU. Selected years; approximate.', es:'Our World in Data — UIT. Años seleccionados; aproximado.'} },
+
+    { id:'compute', theme:'ai', kind:'logline', yUnit:'log', ymin:16, ymax:26, yTicks:[16,18,20,22,24,26],
+      xTicks:[2012,2020,2023],
+      data:[[2012,4.7e17,'AlexNet'],[2019,1.5e21,'GPT-2'],[2020,3.1e23,'GPT-3'],[2022,2.5e24,'PaLM'],[2023,2.1e25,'GPT-4']],
+      title:{en:'Compute behind notable AI', es:'El cómputo detrás de la IA'},
+      sub:{en:'Estimated training compute of landmark AI systems (FLOP, log scale)', es:'Cómputo de entrenamiento estimado de sistemas emblemáticos (FLOP, escala log.)'},
+      src:{en:'Our World in Data & Epoch AI — training compute of notable systems. Estimates approximate.', es:'Our World in Data y Epoch AI — cómputo de entrenamiento de sistemas notables. Estimaciones aproximadas.'} },
+
+    { id:'sector', theme:'ai', kind:'area', yUnit:'pct', ymin:0, ymax:100, yTicks:[0,25,50,75,100],
+      xTicks:[2010,2014,2018,2022], ref:{val:50, label:{en:'academia / industry parity', es:'paridad academia / industria'}},
+      data:[[2010,38],[2014,55],[2018,78],[2022,90]],
+      title:{en:'Who builds the frontier', es:'Quién construye la frontera'},
+      sub:{en:"Industry's share of notable AI systems", es:'Participación de la industria en los sistemas de IA notables'},
+      src:{en:'Our World in Data & Epoch AI; AI Index. Selected years; shares approximate.', es:'Our World in Data y Epoch AI; AI Index. Años seleccionados; participaciones aproximadas.'} },
+
+    { id:'imagenet', theme:'ai', kind:'line', yUnit:'pct', ymin:0, ymax:28, yTicks:[0,7,14,21,28],
+      xTicks:[2011,2013,2015,2017], ref:{val:5.1, label:{en:'human performance ≈ 5%', es:'desempeño humano ≈ 5%'}},
+      data:[[2011,25.8],[2012,16.4],[2013,11.7],[2014,6.7],[2015,3.6],[2016,3.0],[2017,2.3]],
+      title:{en:'AI vision surpasses humans', es:'La visión de la IA supera a la humana'},
+      sub:{en:'ImageNet image-recognition error rate — lower is better', es:'Tasa de error en reconocimiento de imágenes (ImageNet) — menos es mejor'},
+      src:{en:'Our World in Data & AI Index — ImageNet ILSVRC top-5 error.', es:'Our World in Data y AI Index — error top-5 de ImageNet ILSVRC.'} },
+  ];
+
+  const STR = {
+    en:{ back:'← anticarbon.me', byline:'by ANTICARBON · v0.1',
+      tagline:'Open data on AI &amp; education — a lightweight explorer in the spirit of the last MIT-licensed <em>Our World in Data</em> Grapher.',
+      catalog:'Catalog', 'th-edu':'Education', 'th-ai':'Artificial intelligence',
+      'tab-chart':'Chart', 'tab-table':'Table', dl:'Download CSV', 'dl-t':'Download CSV',
+      colYear:'Year', colVal:'Value', srcPrefix:'Source: ',
+      foot:'Sirius v0.1 — a static, open explorer built in the spirit of the MIT-licensed OWID Grapher (the full fork of commit <code>0f4f86b</code> is in development). Data from Our World in Data, Epoch AI and the AI Index under CC BY; charts show selected years and are simplified for clarity — cite the original sources for research.' },
+    es:{ back:'← anticarbon.me', byline:'por ANTICARBON · v0.1',
+      tagline:'Datos abiertos sobre IA y educación — un explorador ligero en el espíritu de la última versión con licencia MIT del Grapher de <em>Our World in Data</em>.',
+      catalog:'Catálogo', 'th-edu':'Educación', 'th-ai':'Inteligencia artificial',
+      'tab-chart':'Gráfico', 'tab-table':'Tabla', dl:'Descargar CSV', 'dl-t':'Descargar CSV',
+      colYear:'Año', colVal:'Valor', srcPrefix:'Fuente: ',
+      foot:'Sirius v0.1 — un explorador abierto y estático construido en el espíritu del Grapher de OWID con licencia MIT (el fork completo del commit <code>0f4f86b</code> está en desarrollo). Datos de Our World in Data, Epoch AI y el AI Index bajo CC BY; los gráficos muestran años seleccionados y están simplificados — cita las fuentes originales para investigación.' },
+  };
+
+  let LANG = localStorage.getItem('ac-lang') || 'en';
+  let CUR = CHARTS[0].id;
+  let TAB = 'chart';
+  let RENDER = null;
+
+  const $ = id => document.getElementById(id);
+  const plot = $('plot'), tableEl = $('table'), tt = $('tt'), catalogEl = $('catalog');
+
+  const SUP = {'-':'⁻','0':'⁰','1':'¹','2':'²','3':'³','4':'⁴','5':'⁵','6':'⁶','7':'⁷','8':'⁸','9':'⁹'};
+  const sup = n => String(n).split('').map(c=>SUP[c]||c).join('');
+  const fmt1 = v => Number.isInteger(v) ? ''+v : v.toFixed(1);
+  function sci(v){ let e=Math.floor(Math.log10(v)+1e-9); let m=v/Math.pow(10,e); m=Math.round(m*10)/10; if(m>=10){m/=10;e++;} return m+'×10'+sup(e); }
+  const pathD = pts => pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' ');
+
+  function tipText(c,d){
+    const head = (c.kind==='logline' && d[2]) ? d[2]+' ('+d[0]+')' : d[0];
+    let v;
+    if(c.yUnit==='log') v='~'+sci(d[1])+' FLOP';
+    else if(c.yUnit==='pct') v=fmt1(d[1])+'%';
+    else v=fmt1(d[1])+(c.unit?' '+c.unit[LANG]:'');
+    return head+' · '+v;
+  }
+
+  function buildChartSVG(c){
+    const W=760,H=420,mL=64,mR=28,mT=30,mB=52;
+    const x0=mL,x1=W-mR,y0=mT,y1=H-mB,pw=x1-x0,ph=y1-y0;
+    const isLog=c.yUnit==='log', isBar=c.kind==='bar';
+    const xs=c.data.map(d=>d[0]); const xmin=Math.min(...xs),xmax=Math.max(...xs);
+    const xp=v=>x0+((v-xmin)/(xmax-xmin))*pw;
+    const n=c.data.length, slot=pw/n, barW=Math.min(slot*0.6,54);
+    const cxi=i=>x0+(i+0.5)*slot;
+    const yp=v=> isLog ? y1-((Math.log10(v)-c.ymin)/(c.ymax-c.ymin))*ph : y1-((v-c.ymin)/(c.ymax-c.ymin))*ph;
+    const gy=t=> y1-((t-c.ymin)/(c.ymax-c.ymin))*ph;
+
+    let g='';
+    c.yTicks.forEach(t=>{
+      const yy=gy(t).toFixed(1);
+      g+=`<line class="grid" x1="${x0}" y1="${yy}" x2="${x1}" y2="${yy}"/>`;
+      const lbl = c.yUnit==='pct' ? t+'%' : isLog ? '10'+sup(t) : fmt1(t);
+      g+=`<text class="ax" x="${x0-8}" y="${(gy(t)+3).toFixed(1)}" text-anchor="end">${lbl}</text>`;
+    });
+    if(c.ref){
+      const ry=yp(c.ref.val).toFixed(1);
+      g+=`<line class="ref" x1="${x0}" y1="${ry}" x2="${x1}" y2="${ry}"/>`;
+      g+=`<text class="ref-t" x="${x1}" y="${(yp(c.ref.val)-6).toFixed(1)}" text-anchor="end">${c.ref.label[LANG]}</text>`;
+    }
+
+    const P=c.data.map((d,i)=>({x:isBar?cxi(i):xp(d[0]), y:yp(d[1]), d}));
+
+    if(c.kind==='area'){
+      const pts=P.map(p=>[p.x,p.y]);
+      const line=pathD(pts);
+      const area=line+` L ${pts[pts.length-1][0].toFixed(1)} ${y1} L ${pts[0][0].toFixed(1)} ${y1} Z`;
+      g+=`<path class="area" d="${area}"/><path class="line" d="${line}"/>`;
+    } else if(c.kind==='line'||c.kind==='logline'){
+      g+=`<path class="line" d="${pathD(P.map(p=>[p.x,p.y]))}"/>`;
+    } else if(isBar){
+      P.forEach(p=>{ g+=`<rect class="bar" x="${(p.x-barW/2).toFixed(1)}" y="${p.y.toFixed(1)}" width="${barW.toFixed(1)}" height="${(y1-p.y).toFixed(1)}" rx="3"/>`; });
+    }
+    if(!isBar) P.forEach(p=>{ g+=`<circle class="dot" cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3.4"/>`; });
+
+    if(isBar){
+      P.forEach(p=>{ g+=`<text class="val" x="${p.x.toFixed(1)}" y="${(p.y-7).toFixed(1)}" text-anchor="middle">${fmt1(p.d[1])}</text>`; });
+    } else if(c.kind==='logline'){
+      P.forEach((p,i)=>{
+        const anchor = i===0?'start':(i===P.length-1?'end':'middle');
+        const yy=(i===1?p.y+16:p.y-9).toFixed(1);
+        const xx=(i===0?p.x+4:(i===P.length-1?p.x-2:p.x)).toFixed(1);
+        g+=`<text class="name" x="${xx}" y="${yy}" text-anchor="${anchor}">${p.d[2]}</text>`;
+      });
+    } else {
+      const f=P[0], l=P[P.length-1];
+      const fv = c.yUnit==='pct'?fmt1(f.d[1])+'%':fmt1(f.d[1]);
+      const lv = c.yUnit==='pct'?fmt1(l.d[1])+'%':fmt1(l.d[1]);
+      g+=`<text class="val" x="${(f.x+6).toFixed(1)}" y="${(f.y-8).toFixed(1)}" text-anchor="start">${fv}</text>`;
+      g+=`<text class="val" x="${(l.x-2).toFixed(1)}" y="${(l.y-8).toFixed(1)}" text-anchor="end">${lv}</text>`;
+    }
+
+    if(isBar){ P.forEach(p=>{ g+=`<text class="ax" x="${p.x.toFixed(1)}" y="${y1+20}" text-anchor="middle">${p.d[0]}</text>`; }); }
+    else { c.xTicks.forEach(t=>{ const a=t===xmax?'end':(t===xmin?'start':'middle'); g+=`<text class="ax" x="${xp(t).toFixed(1)}" y="${y1+20}" text-anchor="${a}">${t}</text>`; }); }
+
+    if(!isBar) g+=`<line class="cross" x1="0" y1="${y0}" x2="0" y2="${y1}" style="visibility:hidden"/><circle class="hl" r="5.5" cx="0" cy="0" style="visibility:hidden"/>`;
+
+    const aria=(c.title[LANG]+'. '+c.sub[LANG]).replace(/"/g,'');
+    const svg=`<svg viewBox="0 0 ${W} ${H}" class="chart theme-${c.theme}" role="img" aria-label="${aria}">${g}</svg>`;
+    const points=P.map(p=>({x:p.x, y:p.y, tip:tipText(c,p.d)}));
+    return {svg, points, isBar};
+  }
+
+  function buildTable(c){
+    const s=STR[LANG];
+    const rows=c.data.map(d=>{
+      let v = c.yUnit==='log' ? '~'+sci(d[1])+' FLOP'
+            : c.yUnit==='pct' ? fmt1(d[1])+'%'
+            : fmt1(d[1])+(c.unit?' '+c.unit[LANG]:'');
+      const name = (c.kind==='logline'&&d[2]) ? ` <span class="tn">${d[2]}</span>` : '';
+      return `<tr><td>${d[0]}${name}</td><td>${v}</td></tr>`;
+    }).join('');
+    return `<table><thead><tr><th>${s.colYear}</th><th>${s.colVal}</th></tr></thead><tbody>${rows}</tbody></table>`;
+  }
+
+  function downloadCSV(c){
+    const csv='Year,'+c.title.en.replace(/,/g,' ')+'\n'+c.data.map(d=>d[0]+','+d[1]).join('\n')+'\n';
+    const blob=new Blob([csv],{type:'text/csv'});
+    const a=document.createElement('a');
+    a.href=URL.createObjectURL(blob); a.download='sirius-'+c.id+'.csv'; a.click();
+    setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+  }
+
+  function draw(){
+    const c=CHARTS.find(x=>x.id===CUR);
+    const k=$('kicker'); k.textContent=STR[LANG]['th-'+c.theme]; k.className='v-kicker '+c.theme;
+    $('title').textContent=c.title[LANG];
+    $('subtitle').textContent=c.sub[LANG];
+    $('source').textContent=STR[LANG].srcPrefix+c.src[LANG];
+    if(TAB==='chart'){ const o=buildChartSVG(c); plot.innerHTML=o.svg; RENDER=o; plot.hidden=false; tableEl.hidden=true; }
+    else { tableEl.innerHTML=buildTable(c); RENDER=null; plot.hidden=true; tableEl.hidden=false; }
+    document.querySelectorAll('.cat-item').forEach(b=>b.classList.toggle('active',b.dataset.id===CUR));
+    $('tab-chart').classList.toggle('active',TAB==='chart');
+    $('tab-table').classList.toggle('active',TAB==='table');
+  }
+
+  function buildCatalog(){
+    const groups={edu:[],ai:[]}; CHARTS.forEach(c=>groups[c.theme].push(c));
+    const grp=t=>`<div class="cat-group"><p class="cat-theme ${t}">${STR[LANG]['th-'+t]}</p>`+
+      groups[t].map(c=>`<button class="cat-item ${t}" data-id="${c.id}">${c.title[LANG]}</button>`).join('')+`</div>`;
+    catalogEl.innerHTML=`<p class="cat-head">${STR[LANG].catalog}</p>`+grp('edu')+grp('ai');
+    catalogEl.querySelectorAll('.cat-item').forEach(b=>b.addEventListener('click',()=>{CUR=b.dataset.id;TAB='chart';draw();}));
+  }
+
+  function applyLang(l){
+    LANG=l; localStorage.setItem('ac-lang',l); document.documentElement.lang=l;
+    document.querySelectorAll('[data-s]').forEach(el=>{ const k=el.dataset.s; if(STR[l][k]!==undefined) el.innerHTML=STR[l][k]; });
+    $('opt-en').classList.toggle('active',l==='en'); $('opt-es').classList.toggle('active',l==='es');
+    buildCatalog(); draw();
+  }
+
+  // hover: nearest-point crosshair + tooltip
+  plot.addEventListener('mousemove',e=>{
+    if(!RENDER) return;
+    const svg=plot.querySelector('svg'); if(!svg) return;
+    const r=svg.getBoundingClientRect();
+    const vbX=(e.clientX-r.left)/r.width*760;
+    let best=0,bd=1e9;
+    RENDER.points.forEach((p,i)=>{const dd=Math.abs(p.x-vbX); if(dd<bd){bd=dd;best=i;}});
+    const p=RENDER.points[best];
+    const cross=svg.querySelector('.cross'), hl=svg.querySelector('.hl');
+    if(cross){cross.setAttribute('x1',p.x);cross.setAttribute('x2',p.x);cross.style.visibility='visible';}
+    if(hl){hl.setAttribute('cx',p.x);hl.setAttribute('cy',p.y);hl.style.visibility='visible';}
+    tt.textContent=p.tip; tt.style.left=(e.clientX+14)+'px'; tt.style.top=(e.clientY-12)+'px'; tt.classList.add('show');
+  });
+  plot.addEventListener('mouseleave',()=>{
+    tt.classList.remove('show');
+    const svg=plot.querySelector('svg'); if(!svg) return;
+    const c=svg.querySelector('.cross'), h=svg.querySelector('.hl');
+    if(c)c.style.visibility='hidden'; if(h)h.style.visibility='hidden';
+  });
+
+  $('tab-chart').onclick=()=>{TAB='chart';draw();};
+  $('tab-table').onclick=()=>{TAB='table';draw();};
+  $('btn-csv').onclick=()=>downloadCSV(CHARTS.find(x=>x.id===CUR));
+  $('langToggle').onclick=()=>applyLang(LANG==='en'?'es':'en');
+
+  applyLang(LANG);
+  </script>
+</body>
+</html>
