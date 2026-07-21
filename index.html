@@ -400,8 +400,8 @@
   .plink.muted { color: var(--text-muted); }
   .plink.muted:hover { color: var(--text); border-color: var(--silver); }
 
-  /* ── DATA / ANTICARBON ATLAS ──────────────────────── */
-  #data { background: var(--white); border-top: 1px solid var(--border); }
+  /* ── SIRIUS (DATA EXPLORER PREVIEW) ────────────────── */
+  #sirius { background: var(--white); border-top: 1px solid var(--border); }
 
   .charts {
     display: grid; grid-template-columns: 1fr 1fr;
@@ -590,7 +590,7 @@
     <div class="nav-right">
       <a class="nav-link" href="#mission"  data-i18n="nav-mission">Mission</a>
       <a class="nav-link" href="#products" data-i18n="nav-products">Products</a>
-      <a class="nav-link" href="#data"     data-i18n="nav-data">Data</a>
+      <a class="nav-link" href="#sirius"   data-i18n="nav-data">Sirius</a>
       <button class="lang-toggle" id="langToggle" onclick="toggleLang()" aria-label="Switch language">
         <span class="lang-opt active" id="opt-en">EN</span>
         <span class="lang-sep">·</span>
@@ -610,7 +610,7 @@
       </p>
       <div class="hero-actions">
         <a class="btn-primary" href="#products" data-i18n="hero-cta-primary">Explore our products</a>
-        <a class="btn-ghost"   href="#data"     data-i18n="hero-cta-ghost">See the data</a>
+        <a class="btn-ghost"   href="#sirius"   data-i18n="hero-cta-ghost">See the data</a>
       </div>
       <div class="origin-badge">
         <span>🌍</span>
@@ -701,19 +701,19 @@
           </div>
         </div>
 
-        <!-- Product 2 — Anticarbon Atlas -->
+        <!-- Product 2 — Sirius -->
         <div class="product-card">
           <div class="tag-row">
             <span class="tag" data-i18n="tag-dev">In development</span>
             <span class="tag mit" data-i18n="tag-fork">MIT fork</span>
           </div>
-          <div class="product-name">Anticarbon Atlas</div>
+          <div class="product-name">Sirius</div>
           <div class="product-tagline" data-i18n="atlas-tagline">Open data on AI &amp; education</div>
           <p class="product-desc" data-i18n="atlas-desc">
             A fork of the last MIT-licensed release of <em>Our World in Data</em>'s Grapher, curated down to the visualizations that matter most for understanding artificial intelligence and education. Open data, open code, forever free — a small window onto the numbers behind our mission.
           </p>
           <div class="product-links">
-            <a class="plink" href="#data">
+            <a class="plink" href="#sirius">
               <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18 9l-5 5-3-3-4 4"/></svg>
               <span data-i18n="atlas-explore">Explore the data</span>
             </a>
@@ -724,13 +724,13 @@
     </div>
   </section>
 
-  <!-- DATA / ANTICARBON ATLAS -->
-  <section id="data">
+  <!-- SIRIUS (DATA EXPLORER PREVIEW) -->
+  <section id="sirius">
     <div class="container">
-      <p class="section-label" data-i18n="data-label">Anticarbon Atlas</p>
+      <p class="section-label" data-i18n="data-label">Sirius</p>
       <h2 class="section-title" data-i18n="data-title">The data that matters, <em>openly</em></h2>
       <p class="section-body" data-i18n="data-body">
-        A first, curated selection from the Atlas: the long rise of human education, and the sudden acceleration of artificial intelligence. Together they frame the question we exist to answer — how do the benefits of AI reach everyone? Hover any point for detail.
+        A first, curated selection from Sirius: the long rise of human education, and the sudden acceleration of artificial intelligence. Together they frame the question we exist to answer — how do the benefits of AI reach everyone? Hover any point for detail.
       </p>
 
       <div class="charts">
@@ -914,7 +914,7 @@
       </div>
 
       <div class="atlas-attrib" data-i18n="atlas-attrib">
-        Data drawn from <a href="https://ourworldindata.org" target="_blank" rel="noopener">Our World in Data</a> and <a href="https://epoch.ai" target="_blank" rel="noopener">Epoch AI</a>, used under a Creative Commons BY licence. The Anticarbon Atlas viewer is a fork of the last MIT-licensed release of the Our World in Data Grapher. Charts above show selected landmark years and are simplified for clarity — always cite the original sources for research.
+        Data drawn from <a href="https://ourworldindata.org" target="_blank" rel="noopener">Our World in Data</a> and <a href="https://epoch.ai" target="_blank" rel="noopener">Epoch AI</a>, used under a Creative Commons BY licence. Sirius is a fork of the last MIT-licensed release of the Our World in Data Grapher (commit <code>0f4f86b</code>, before it moved to a proprietary licence on 12 May 2026). Charts above show selected landmark years and are simplified for clarity — always cite the original sources for research.
       </div>
     </div>
   </section>
@@ -962,7 +962,7 @@
     en: {
       'nav-mission':  'Mission',
       'nav-products': 'Products',
-      'nav-data':     'Data',
+      'nav-data':     'Sirius',
       'nav-explore':  'Explore',
       'hero-eyebrow': 'Educational enterprise · Free &amp; open source',
       'hero-h1':      'Making the benefits of AI<br/><em>broadly shared</em>',
@@ -996,9 +996,9 @@
       'atlas-desc': 'A fork of the last MIT-licensed release of <em>Our World in Data</em>’s Grapher, curated down to the visualizations that matter most for understanding artificial intelligence and education. Open data, open code, forever free — a small window onto the numbers behind our mission.',
       'atlas-explore': 'Explore the data',
 
-      'data-label': 'Anticarbon Atlas',
+      'data-label': 'Sirius',
       'data-title': 'The data that matters, <em>openly</em>',
-      'data-body':  'A first, curated selection from the Atlas: the long rise of human education, and the sudden acceleration of artificial intelligence. Together they frame the question we exist to answer — how do the benefits of AI reach everyone? Hover any point for detail.',
+      'data-body':  'A first, curated selection from Sirius: the long rise of human education, and the sudden acceleration of artificial intelligence. Together they frame the question we exist to answer — how do the benefits of AI reach everyone? Hover any point for detail.',
       'ck-edu':   'Education',
       'ck-edu-2': 'Education',
       'ck-ai':    'Artificial intelligence',
@@ -1016,7 +1016,7 @@
       'cD-sub':   'Industry’s share of notable AI systems, 2010–2022',
       'cD-cross': 'academia / industry parity',
       'cD-src':   'Source: Our World in Data &amp; Epoch AI; AI Index — notable AI systems by sector. Selected years; shares approximate.',
-      'atlas-attrib': 'Data drawn from <a href="https://ourworldindata.org" target="_blank" rel="noopener">Our World in Data</a> and <a href="https://epoch.ai" target="_blank" rel="noopener">Epoch AI</a>, used under a Creative Commons BY licence. The Anticarbon Atlas viewer is a fork of the last MIT-licensed release of the Our World in Data Grapher. Charts above show selected landmark years and are simplified for clarity — always cite the original sources for research.',
+      'atlas-attrib': 'Data drawn from <a href="https://ourworldindata.org" target="_blank" rel="noopener">Our World in Data</a> and <a href="https://epoch.ai" target="_blank" rel="noopener">Epoch AI</a>, used under a Creative Commons BY licence. Sirius is a fork of the last MIT-licensed release of the Our World in Data Grapher (commit <code>0f4f86b</code>, before it moved to a proprietary licence on 12 May 2026). Charts above show selected landmark years and are simplified for clarity — always cite the original sources for research.',
 
       'open-label': 'Open source',
       'open-title': 'Everything we make is <em>free and open</em>',
@@ -1034,7 +1034,7 @@
     es: {
       'nav-mission':  'Misión',
       'nav-products': 'Productos',
-      'nav-data':     'Datos',
+      'nav-data':     'Sirius',
       'nav-explore':  'Explorar',
       'hero-eyebrow': 'Empresa educativa · Libre y de código abierto',
       'hero-h1':      'Hacer que los beneficios de la IA sean<br/><em>ampliamente compartidos</em>',
@@ -1068,9 +1068,9 @@
       'atlas-desc': 'Un fork de la última versión con licencia MIT del Grapher de <em>Our World in Data</em>, depurado hasta dejar las visualizaciones que más importan para entender la inteligencia artificial y la educación. Datos abiertos, código abierto, siempre gratis — una pequeña ventana a las cifras detrás de nuestra misión.',
       'atlas-explore': 'Explorar los datos',
 
-      'data-label': 'Anticarbon Atlas',
+      'data-label': 'Sirius',
       'data-title': 'Los datos que importan, <em>abiertamente</em>',
-      'data-body':  'Una primera selección del Atlas: el largo ascenso de la educación humana y la súbita aceleración de la inteligencia artificial. Juntos plantean la pregunta que existimos para responder: ¿cómo llegan a todos los beneficios de la IA? Pasa el cursor sobre cualquier punto para ver el detalle.',
+      'data-body':  'Una primera selección de Sirius: el largo ascenso de la educación humana y la súbita aceleración de la inteligencia artificial. Juntos plantean la pregunta que existimos para responder: ¿cómo llegan a todos los beneficios de la IA? Pasa el cursor sobre cualquier punto para ver el detalle.',
       'ck-edu':   'Educación',
       'ck-edu-2': 'Educación',
       'ck-ai':    'Inteligencia artificial',
@@ -1088,7 +1088,7 @@
       'cD-sub':   'Participación de la industria en los sistemas de IA notables, 2010–2022',
       'cD-cross': 'paridad academia / industria',
       'cD-src':   'Fuente: Our World in Data y Epoch AI; AI Index — sistemas de IA notables por sector. Años seleccionados; participaciones aproximadas.',
-      'atlas-attrib': 'Datos tomados de <a href="https://ourworldindata.org" target="_blank" rel="noopener">Our World in Data</a> y <a href="https://epoch.ai" target="_blank" rel="noopener">Epoch AI</a>, usados bajo licencia Creative Commons BY. El visor Anticarbon Atlas es un fork de la última versión con licencia MIT del Grapher de Our World in Data. Los gráficos muestran años emblemáticos seleccionados y están simplificados para mayor claridad — cita siempre las fuentes originales para investigación.',
+      'atlas-attrib': 'Datos tomados de <a href="https://ourworldindata.org" target="_blank" rel="noopener">Our World in Data</a> y <a href="https://epoch.ai" target="_blank" rel="noopener">Epoch AI</a>, usados bajo licencia Creative Commons BY. Sirius es un fork de la última versión con licencia MIT del Grapher de Our World in Data (commit <code>0f4f86b</code>, antes de pasar a una licencia propietaria el 12 de mayo de 2026). Los gráficos muestran años emblemáticos seleccionados y están simplificados para mayor claridad — cita siempre las fuentes originales para investigación.',
 
       'open-label': 'Código abierto',
       'open-title': 'Todo lo que hacemos es <em>libre y abierto</em>',
